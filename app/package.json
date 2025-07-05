@@ -6,11 +6,12 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node bot.js"
   },
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^16.4.7",
+    "express": "^5.1.0",
     "node-fetch": "^2.7.0"
   }
 }
