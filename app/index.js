@@ -39,7 +39,10 @@ client.once("ready", () => {
 
 // メッセージ受信時の処理
 client.on("message", async (message) => {
-  if (message.author.bot) return;
+  // WebhookかBotかを区別
+  const isWebhook = message.webhookID !== null;
+
+  if (!isWebhook && message.author.bot) return;
 
   console.log(`メッセージ受信: ${message.content}`);
 
@@ -53,7 +56,7 @@ client.on("message", async (message) => {
       await message.reply("メンションを検知しました！");
       console.log("Discordに返信しました");
 
-      // サーバー名（ギルド名）とチャンネル名を取得
+      // サーバー名とチャンネル名を取得
       const guildName = message.guild ? message.guild.name : "DM";
       const channelName = message.channel ? message.channel.name : "不明なチャンネル";
 
@@ -68,3 +71,17 @@ client.on("message", async (message) => {
 
 // Discordボットのログイン
 client.login(process.env.DISCORD_TOKEN);
+
+
+// ボットの常時起動
+const express = require('express');
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot is running.");
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`ウェブサーバーがポート ${port} で起動中`);
+});
