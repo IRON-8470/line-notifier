@@ -6,7 +6,7 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "node bot.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "discord.js": "^12.5.3",
