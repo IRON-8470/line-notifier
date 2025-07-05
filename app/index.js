@@ -72,16 +72,3 @@ client.on("message", async (message) => {
 // Discordボットのログイン
 client.login(process.env.DISCORD_TOKEN);
 
-
-// ボットの常時起動
-const express = require('express');
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Bot is running.");
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`ウェブサーバーがポート ${port} で起動中`);
-});
